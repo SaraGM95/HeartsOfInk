@@ -52,7 +52,11 @@ public class GlobalLogicController : MonoBehaviour
     {
         get { return gameModel.Gametype == GameModel.GameType.Single; }
     }
-
+    
+    [SerializeField]
+    private GameObject MultiselectBtn;
+    [SerializeField]
+    private GameObject CancelSelectionBtn;
     [SerializeField]
     public TargetPositionMarkerController targetMarkerController;
     public List<CityController> cities;
@@ -546,7 +550,7 @@ public class GlobalLogicController : MonoBehaviour
             {
                 if (Input.GetMouseButtonUp(KeyConstants.LeftClick))
                 {
-                    selection.MultiselectOrigin = null;
+                    EndMultiselect();
                 }
             }
         }
@@ -575,7 +579,7 @@ public class GlobalLogicController : MonoBehaviour
             {
                 if (Input.GetMouseButtonUp(KeyConstants.LeftClick))
                 {
-                    selection.MultiselectOrigin = null;
+                    EndMultiselect();
                 }
             }
         }
@@ -869,6 +873,8 @@ public class GlobalLogicController : MonoBehaviour
                             cameraController.ScreenToWorldPoint(),
                             typeof(TroopController)
                         );
+                        MultiselectBtn.SetActive(true);
+                        CancelSelectionBtn.SetActive(true);
                         targetMarkerController.RemoveTargetPosition();
                         Debug.Log($"MultiselectOrigin assignated {selection.MultiselectOrigin}");
                         break;
@@ -903,6 +909,8 @@ public class GlobalLogicController : MonoBehaviour
                     thisPcPlayer.MapPlayerSlotId
                 );
                 targetMarkerController.SetTargetPosition(newSelection.troopModel.Target, false);
+                MultiselectBtn.SetActive(true);
+                CancelSelectionBtn.SetActive(true);
             }
         }
         catch (Exception ex)
@@ -1031,11 +1039,23 @@ public class GlobalLogicController : MonoBehaviour
         {
             selection.EndSelection();
             targetMarkerController.RemoveTargetPosition();
+            MultiselectBtn.SetActive(false);
+            CancelSelectionBtn.SetActive(false);
         }
         catch (Exception ex)
         {
             LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
             Debug.LogException(ex);
+        }
+    }
+
+    private void EndMultiselect()
+    {
+        selection.MultiselectOrigin = null;
+        if (selection.SelectionObjects.Count == 0)
+        {
+            MultiselectBtn.SetActive(false);
+            CancelSelectionBtn.SetActive(false);
         }
     }
 }
