@@ -137,7 +137,7 @@ namespace Assets.Scripts.DataAccess
                     Debug.LogError("Unexpected error on connection, exception maybe logged in origin method.");
                     break;
                 case InternalStatusCodes.KOCode:
-                    Debug.LogError("Server response with unexpected error: ObjectResponse: " + responseModel.serviceResponse);
+                    Debug.LogError("Server response with unexpected error: ObjectResponse: " + responseModel.serviceResponse + " Error:" + responseModel.ServiceError);
                     break;
                 default:
                     Debug.Log("Server response - InternalResultCode: " + responseModel.internalResultCode);

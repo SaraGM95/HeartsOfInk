@@ -24,7 +24,7 @@ public class TargetPositionMarkerController : MonoBehaviour
 
     public void SetTargetPosition(GameObject target, bool isTemporal)
     {
-        Debug.Log("Start - SetTargetPosition - GameObject");
+        //Debug.Log("Start - SetTargetPosition - GameObject");
         if (target != null)
         {
             this.gameObject.SetActive(true);
