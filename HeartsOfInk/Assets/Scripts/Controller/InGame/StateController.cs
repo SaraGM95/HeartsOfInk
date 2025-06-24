@@ -35,7 +35,6 @@ public class StateController : MonoBehaviour
     private Dictionary<string, AttackTroopModel> attackTroopOrders;
     private Dictionary<string, MoveTroopModel> moveTroopOrders;
     private bool waitingResponse = false;
-    public Text txtIsMultiplayer;
 
     // Start is called before the first frame update
     void Start()
@@ -60,7 +59,6 @@ public class StateController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        txtIsMultiplayer.text = "Is multiplayer host?: " + globalLogic.IsMultiplayerHost;
         if (globalLogic.IsMultiplayerHost)
         {
             SendStateGame();
