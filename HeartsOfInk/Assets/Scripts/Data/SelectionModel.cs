@@ -41,6 +41,7 @@ namespace Assets.Scripts.Data
 
         public void StartMultiselect(Vector3 startPoint, Type selectionType)
         {
+            Debug.Log("StartMultiselect");
             MultiselectOrigin = startPoint;
             SetAsNull();
             ChangeSelection(null, selectionType);
@@ -51,17 +52,13 @@ namespace Assets.Scripts.Data
             if (MultiselectOrigin.HasValue)
             {
                 Bounds bounds = new Bounds();
+                float maxX = MultiselectOrigin.Value.x > multiselectEnd.x ? MultiselectOrigin.Value.x : multiselectEnd.x;
+                float minX = MultiselectOrigin.Value.x < multiselectEnd.x ? MultiselectOrigin.Value.x : multiselectEnd.x;
+                float maxY = MultiselectOrigin.Value.y > multiselectEnd.y ? MultiselectOrigin.Value.y : multiselectEnd.y;
+                float minY = MultiselectOrigin.Value.y < multiselectEnd.y ? MultiselectOrigin.Value.y : multiselectEnd.y;
 
-                if (MultiselectOrigin.Value.x > multiselectEnd.x)
-                {
-                    bounds.max = MultiselectOrigin.Value;
-                    bounds.min = multiselectEnd;
-                }
-                else
-                {
-                    bounds.max = multiselectEnd;
-                    bounds.min = MultiselectOrigin.Value;
-                }
+                bounds.max = new Vector3(maxX, maxY);
+                bounds.min = new Vector3(minX, minY);
 
                 foreach (Transform troopTransform in parentHolder.transform)
                 {
