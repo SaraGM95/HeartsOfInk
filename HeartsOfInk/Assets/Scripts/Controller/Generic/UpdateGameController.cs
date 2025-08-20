@@ -74,12 +74,12 @@ public class UpdateGameController : MonoBehaviour
                 else if (instalationFilesQueue.Count > 0)
                 {
                     FileDto newFile = instalationFilesQueue.Dequeue();
+                    string filePath = GlobalConstants.RootPath + "/" + newFile.Path;
 
-                    Debug.LogWarning($"Overwriting instalation file without verify current file version.");
+                    Debug.LogWarning($"Overwriting instalation file without verify current file version on path: {filePath}");
+                    
                     string fileContentbase64 = await GetFileContent(newFile);
-                    byte[] fileContentBytes = Convert.FromBase64String(fileContentbase64);
-
-                    File.WriteAllBytes(GlobalConstants.RootPath + "/" +  newFile.Path, fileContentBytes);
+                    FileDAC.SaveBase64File(fileContentbase64, filePath);
                 }
                 else
                 {
