@@ -1,0 +1,1 @@
+C:\Repositorios\HeartsOfInk\HeartsOfInk\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\build\intermediates\cxx\RelWithDebInfo\4k6n6k1q\obj\armeabi-v7a
