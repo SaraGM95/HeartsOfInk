@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Assets.Scripts.Data;
+﻿using Assets.Scripts.Data;
 using Assets.Scripts.Data.GlobalInfo;
 using Assets.Scripts.DataAccess;
 using Assets.Scripts.Utils;
 using HeartsOfInk.SharedLogic;
 using LobbyHOIServer.Models.MapModels;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,6 +46,7 @@ public class EditorPanelController : MonoBehaviour
             }
         );
         LoadMap();
+        LoadBackgroundCombo();
     }
 
     void Update() { }
@@ -410,5 +411,13 @@ public class EditorPanelController : MonoBehaviour
     {
         Debug.LogWarning("Call to method MakeMapPlayerSlotIdCorrelative. This method isn't implemented yet.");
         //throw new NotImplementedException();
+    }
+
+    private void LoadBackgroundCombo()
+    {
+        Debug.Log("Loading available sprites");
+        cbMapImages.AddOptions(MapDAC.GetAvailableSprites(GlobalConstants.RootPath)); 
+        cbMapImages.value = cbMapImages.options.FindIndex(item => item.text == mapModel.SpriteName);
+        cbMapImages.RefreshShownValue();
     }
 }
