@@ -13,7 +13,7 @@ OcclusionCullingSettings:
 --- !u!104 &2
 RenderSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 9
+  serializedVersion: 10
   m_Fog: 0
   m_FogColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
   m_FogMode: 3
@@ -38,13 +38,12 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
-  m_GIWorkflowMode: 1
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -67,9 +66,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -581,6 +577,9 @@ SpriteRenderer:
   m_ReflectionProbeUsage: 1
   m_RayTracingMode: 0
   m_RayTraceProcedural: 0
+  m_RayTracingAccelStructBuildFlagsOverride: 0
+  m_RayTracingAccelStructBuildFlags: 1
+  m_SmallMeshCulling: 1
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
@@ -776,12 +775,12 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: "Hearts of ink\r\n\r\nA game developed by Rawgen Games\r\n\r\nProgrammers\nElisabeth
-    Garc\xEDa\r\nLuis Cebri\xE1n Mendui\xF1a\r\nRa\xFAl Garc\xEDa\r\nSara Garc\xEDa\r\n\r\nUI
-    \r\nLaia Tugas Berrocal\r\nEsther Guerrero \r\nSara Garc\xEDa\r\nKenney assets
-    (see Assets section)\r\n\r\nHearts of Ink logo\r\nLaia Tugas Berrocal\r\nSara
-    Garc\xEDa\r\n\r\nLevel Design\r\nPablo Ar\xE9valo\r\nSara Garc\xEDa\r\n\r\nIT\r\nUmi
-    Hekati\r\nLuis Cebri\xE1n Mendui\xF1a\r\nSara Garc\xEDa\r\n\r\nProduction\r\nSara
+  m_Text: "Hearts of ink\r\n\r\nA game developed by Rawgen Games\r\n\r\nProgrammers\t\r\nElisabeth
+    Garc\xEDa\r\nGabri BT\r\nLuis Cebri\xE1n Mendui\xF1a\r\nRa\xFAl Garc\xEDa\r\nSara
+    Garc\xEDa\r\n\r\nUI \r\nLaia Tugas Berrocal\r\nEsther Guerrero \r\nSara Garc\xEDa\r\nKenney
+    assets (see Assets section)\r\n\r\nHearts of Ink logo\r\nLaia Tugas Berrocal\r\nSara
+    Garc\xEDa\r\n\r\nLevel Design\r\nPablo Ar\xE9valo\r\nSara Garc\xEDa\r\n\r\nIT\r\nGabri
+    BT\r\nLuis Cebri\xE1n Mendui\xF1a\r\nSara Garc\xEDa\r\n\r\nProduction\r\nSara
     Garc\xEDa\r\n\r\nTools\r\nRawgen Studio\r\nUnity 2022 (Unity Technologies)\r\n\r\nAssets\r\nKenney
     (www.kenney.nl)\r\n\r\nReferences for realistic maps\r\nOpenStreetMap (www.openstreetmap.org)\t\r\nIGN-CNIG
     (centrodedescargas.cnig.es) \r\n\r\nMusic\r\nTribal Affair - SYBS\r\nEyes of
@@ -791,7 +790,7 @@ MonoBehaviour:
     Jammy Jams\r\nCalcutta Sunset - E's Jammy Jams\r\nSahara Rains - Hanu Dixit\r\n\r\nSound
     Effects\r\nSara Garc\xEDa\r\n\r\nSpecial Thanks\r\nIrene Alberola\r\nAndr\xE9s
     Balanza\r\nAdri\xE1n Corbal\xE1n\r\nEzequiel Matesanz\r\nFlavia de Paula\r\nRoc\xEDo
-    Tom\xE9\r\n\r\n"
+    Tom\xE9\r\n"
 --- !u!222 &1619024607
 CanvasRenderer:
   m_ObjectHideFlags: 0
