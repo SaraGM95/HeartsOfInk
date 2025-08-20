@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.Examples;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Data
@@ -86,6 +84,22 @@ namespace Assets.Scripts.Data
                 else
                 {
                     ChangeSelection(newSelection.GetGameObject(), type);
+                }
+            }
+        }
+
+        public void UnsetObjectSelected(IObjectSelectable objectToRemove)
+        {
+            if (SelectionObjects != null && SelectionObjects.Contains(objectToRemove.GetGameObject()))
+            {
+                if (SelectionObjects.Count == 1)
+                {
+                    EndSelection();
+                }
+                else if (SelectionObjects.Count > 1)
+                {
+                    SelectionObjects.Remove(objectToRemove.GetGameObject());
+                    objectToRemove.EndSelection();
                 }
             }
         }

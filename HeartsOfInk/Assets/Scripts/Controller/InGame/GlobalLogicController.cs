@@ -24,6 +24,7 @@ public class GlobalLogicController : MonoBehaviour
         new WebServiceCaller<LogExceptionDto, bool>();
     private WebServiceCaller<LogAnalyticsDto, bool> analyticSender =
         new WebServiceCaller<LogAnalyticsDto, bool>();
+    private bool manualMultiselectEnabled = false;
 
     /// <summary>
     /// Contador que se utiliza para que las unidades clonadas no tengan el mismo nombre.
@@ -383,6 +384,7 @@ public class GlobalLogicController : MonoBehaviour
         }
     }
 
+    #region Instances
     public void InstantiateCity(MapCityModel cityModel, Player cityOwner)
     {
         CityController newObject;
@@ -456,6 +458,55 @@ public class GlobalLogicController : MonoBehaviour
         }
     }
 
+    public void DestroyUnit(string troopName)
+    {
+        Transform troop = troopsCanvas.transform.Find(troopName);
+
+        if (troop == null)
+        {
+            Debug.LogWarning("Troop not finded: " + troopName);
+        }
+        else
+        {
+            DestroyUnit(troop.gameObject, null);
+        }
+    }
+
+    public void DestroyUnit(GameObject unitToDestroy, TroopController destroyer)
+    {
+        TroopController troopController;
+
+        try
+        {
+            troopController = unitToDestroy.GetComponent<TroopController>();
+
+            if (troopController != null)
+            {
+                CleanTroopSelection(troopController.troopModel);
+                troopController.DestroyTroopActions(IsMultiplayerHost);
+            }
+
+            if (destroyer != null)
+            {
+                statisticsController.ReportArmyDefeated(troopController, destroyer);
+            }
+
+            if (IsMultiplayerHost)
+            {
+                //TroopDeadSignalR.Instance.SendTroopDead(gameModel.GameKey, unitToDestroy.transform.name);
+            }
+
+            Destroy(unitToDestroy);
+        }
+        catch (Exception ex)
+        {
+            LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
+            Debug.LogException(ex);
+        }
+    }
+
+    #endregion Instances
+
     /// <summary>
     /// Lógica multiplayer/singleplayer: Sirve para los dos de forma temporal, revisar funcionamiento a futuro.
     /// </summary>
@@ -514,6 +565,7 @@ public class GlobalLogicController : MonoBehaviour
         }
     }
 
+    #region Input management
     /// <summary>
     /// Lógica de control de inputs.
     ///
@@ -589,7 +641,9 @@ public class GlobalLogicController : MonoBehaviour
             Debug.LogException(ex);
         }
     }
+    #endregion Input management
 
+    #region Speed management
     public void ChangeSpeed(KeyCode key)
     {
         try
@@ -723,11 +777,6 @@ public class GlobalLogicController : MonoBehaviour
         }
     }
 
-    private void ChangeButtonColors(Image button, Color color)
-    {
-        button.color = color;
-    }
-
     private void CheckTimeChangeAnalytics()
     {
         try
@@ -747,6 +796,12 @@ public class GlobalLogicController : MonoBehaviour
             LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
             Debug.LogException(ex);
         }
+    }
+    #endregion Speed management
+
+    private void ChangeButtonColors(Image button, Color color)
+    {
+        button.color = color;
     }
 
     /// <summary>
@@ -794,7 +849,18 @@ public class GlobalLogicController : MonoBehaviour
     {
         try
         {
-            if (selection.HaveObjectSelected)
+            if (manualMultiselectEnabled)
+            {
+                if (selection.SelectionObjects.Contains(newSelection.gameObject))
+                {
+                    UnsetTroopSelected(newSelection);
+                }
+                else
+                {
+                    SetTroopSelected(newSelection, true);
+                }
+            }
+            else if (selection.HaveObjectSelected)
             {
                 if (!selection.SelectionObjects.Contains(newSelection.gameObject))
                 {
@@ -859,9 +925,9 @@ public class GlobalLogicController : MonoBehaviour
     {
         try
         {
-            if (false)
+            if (Application.platform == RuntimePlatform.Android)
             {
-                //Todo: LÓGICA ALTERNATIVA PARA ANDROID
+                MoveSelectedTroops();
             }
             else
             {
@@ -908,7 +974,17 @@ public class GlobalLogicController : MonoBehaviour
                     typeof(TroopController),
                     thisPcPlayer.MapPlayerSlotId
                 );
-                targetMarkerController.SetTargetPosition(newSelection.troopModel.Target, false);
+
+                if (isMultiselect && selection.SelectionObjects.Count > 1)
+                {
+                    // Si hay más de un objeto seleccionado puede tener diferentes destinos, con lo que no mostramos target.
+                    targetMarkerController.RemoveTargetPosition();
+                }
+                else
+                {
+                    targetMarkerController.SetTargetPosition(newSelection.troopModel.Target, false);
+                }
+
                 MultiselectBtn.SetActive(true);
                 CancelSelectionBtn.SetActive(true);
             }
@@ -917,6 +993,26 @@ public class GlobalLogicController : MonoBehaviour
         {
             LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
             Debug.LogException(ex);
+        }
+    }
+
+    private void UnsetTroopSelected(TroopController toRemoveSelection)
+    {
+        if (toRemoveSelection.troopModel.Player == thisPcPlayer)
+        {
+            selection.UnsetObjectSelected(toRemoveSelection);
+
+            if (!selection.HaveObjectSelected)
+            {
+                targetMarkerController.RemoveTargetPosition();
+                MultiselectBtn.SetActive(true);
+                CancelSelectionBtn.SetActive(true);
+            }
+            else if (selection.SelectionObjects.Count == 1)
+            {
+                TroopController alreadySelectedTroop = selection.SelectionObjects.First().GetComponent<TroopController>();
+                targetMarkerController.SetTargetPosition(alreadySelectedTroop.troopModel.Target, false);
+            }
         }
     }
 
@@ -959,6 +1055,10 @@ public class GlobalLogicController : MonoBehaviour
 
                 EndSelection();
             }
+            else
+            {
+                Debug.LogWarning($"MoveSelectedTroops method called but no troops selected. selection.HaveObjectSelected: {selection.HaveObjectSelected}, type: {selection.SelectionType}");
+            }
         }
         catch (Exception ex)
         {
@@ -986,54 +1086,7 @@ public class GlobalLogicController : MonoBehaviour
         }
     }
 
-    public void DestroyUnit(string troopName)
-    {
-        Transform troop = troopsCanvas.transform.Find(troopName);
-
-        if (troop == null)
-        {
-            Debug.LogWarning("Troop not finded: " + troopName);
-        }
-        else
-        {
-            DestroyUnit(troop.gameObject, null);
-        }
-    }
-
-    public void DestroyUnit(GameObject unitToDestroy, TroopController destroyer)
-    {
-        TroopController troopController;
-
-        try
-        {
-            troopController = unitToDestroy.GetComponent<TroopController>();
-
-            if (troopController != null)
-            {
-                CleanTroopSelection(troopController.troopModel);
-                troopController.DestroyTroopActions(IsMultiplayerHost);
-            }
-
-            if (destroyer != null)
-            {
-                statisticsController.ReportArmyDefeated(troopController, destroyer);
-            }
-
-            if (IsMultiplayerHost)
-            {
-                //TroopDeadSignalR.Instance.SendTroopDead(gameModel.GameKey, unitToDestroy.transform.name);
-            }
-
-            Destroy(unitToDestroy);
-        }
-        catch (Exception ex)
-        {
-            LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
-            Debug.LogException(ex);
-        }
-    }
-
-    private void EndSelection()
+    public void EndSelection()
     {
         try
         {
@@ -1057,5 +1110,17 @@ public class GlobalLogicController : MonoBehaviour
             MultiselectBtn.SetActive(false);
             CancelSelectionBtn.SetActive(false);
         }
+    }
+
+    public void SwitchManualMultiselectState()
+    {
+        manualMultiselectEnabled = !manualMultiselectEnabled;
+        UpdateMultiselectBtnColor();
+    }
+
+    private void UpdateMultiselectBtnColor()
+    {
+        Image multiselectRender = MultiselectBtn.GetComponent<Image>();
+        multiselectRender.color = manualMultiselectEnabled ? Color.white : Color.black;
     }
 }

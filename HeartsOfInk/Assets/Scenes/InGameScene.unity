@@ -338,9 +338,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420030}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ZoomIn
+      - m_Target: {fileID: 1199824672}
+        m_TargetAssemblyTypeName: GlobalLogicController, Assembly-CSharp
+        m_MethodName: SwitchManualMultiselectState
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1264,9 +1264,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 519420030}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: ZoomIn
+      - m_Target: {fileID: 1199824672}
+        m_TargetAssemblyTypeName: GlobalLogicController, Assembly-CSharp
+        m_MethodName: EndSelection
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
