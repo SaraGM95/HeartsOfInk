@@ -21,7 +21,12 @@ namespace Assets.Scripts.DataAccess
                 fullPath += "/";
             }
 
-            fullPath += "MapSprites";
+            // Debido a los múltiples origenes de datos a veces viene "MapSprites" al final y otras veces no.
+            if (!fullPath.EndsWith("MapSprites"))
+            {
+                fullPath += "MapSprites";
+            }
+            
             fullPath += spriteName.StartsWith("/") ? spriteName : "/" + spriteName;
             imageData = File.ReadAllBytes(fullPath);
             texture.LoadImage(imageData);
