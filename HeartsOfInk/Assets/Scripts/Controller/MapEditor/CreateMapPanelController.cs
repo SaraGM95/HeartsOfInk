@@ -84,6 +84,7 @@ public class CreateMapPanelController : MonoBehaviour
         MapDAC.SaveMapDefinition(mapModel, GlobalConstants.RootPath);
         editorPanelController.gameObject.SetActive(true);
         editorPanelController.LoadAvailableMaps(displayName);
+        editorPanelController.LoadBackgroundCombo();
     }
 
     public void OnChangeBackground()

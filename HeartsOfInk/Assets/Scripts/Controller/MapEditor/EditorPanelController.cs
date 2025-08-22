@@ -413,11 +413,17 @@ public class EditorPanelController : MonoBehaviour
         //throw new NotImplementedException();
     }
 
-    private void LoadBackgroundCombo()
+    public void LoadBackgroundCombo()
     {
         Debug.Log("Loading available sprites");
         cbMapImages.AddOptions(MapDAC.GetAvailableSprites(GlobalConstants.RootPath)); 
         cbMapImages.value = cbMapImages.options.FindIndex(item => item.text == mapModel.SpriteName);
         cbMapImages.RefreshShownValue();
+    }
+
+    public void OnChangeBackground()
+    {
+        mapModel.SpriteName = cbMapImages.options[cbMapImages.value].text;
+        MapController.Instance.UpdateMap(mapModel.SpriteName);
     }
 }
