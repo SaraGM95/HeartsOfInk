@@ -42,7 +42,9 @@ public class EditorPanelController : MonoBehaviour
         cbMaps.onValueChanged.AddListener(
             delegate
             {
+                LoadBackgroundCombo();
                 LoadMap();
+                
             }
         );
         LoadMap();
