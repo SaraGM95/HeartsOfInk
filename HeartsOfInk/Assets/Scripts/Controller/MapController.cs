@@ -36,6 +36,11 @@ public class MapController : MonoBehaviour
         spriteRenderer.sprite = MapSpriteDAC.LoadMapSprite(spriteName);
     }
 
+    public void UpdateMapWithoutCleaning(string spriteName)
+    {
+        spriteRenderer.sprite = MapSpriteDAC.LoadMapSprite(spriteName);
+    }
+
     void OnMouseOver()
     {
         if (Input.GetMouseButtonDown(KeyConstants.LeftClick))

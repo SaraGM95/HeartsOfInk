@@ -42,9 +42,8 @@ public class EditorPanelController : MonoBehaviour
         cbMaps.onValueChanged.AddListener(
             delegate
             {
-                LoadBackgroundCombo();
                 LoadMap();
-                
+                LoadBackgroundCombo();
             }
         );
         LoadMap();
@@ -426,6 +425,6 @@ public class EditorPanelController : MonoBehaviour
     public void OnChangeBackground()
     {
         mapModel.SpriteName = cbMapImages.options[cbMapImages.value].text;
-        MapController.Instance.UpdateMap(mapModel.SpriteName);
+        MapController.Instance.UpdateMapWithoutCleaning(mapModel.SpriteName);
     }
 }
