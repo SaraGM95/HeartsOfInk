@@ -9,7 +9,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>
+    </RootNamespace>
     <ProjectGuid>{7C735C62-2E55-5B97-87B9-B6BF5488B37F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -137,7 +138,6 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark03.cs" />
     <Compile Include="Assets\Scripts\Logic\LanguageManager.cs" />
     <Compile Include="Assets\Scripts\Controller\MapEditor\EditorCityController.cs" />
-    <Compile Include="Assets\Scripts\Controller\Multiplayer\IngameSignalR\TroopDeadSignalR.cs" />
     <Compile Include="Assets\Scripts\Data\CombatResults.cs" />
     <Compile Include="Assets\Scripts\Rawgen\Literals\Literal.cs" />
     <Compile Include="Assets\Scripts\Controller\LoginController.cs" />
