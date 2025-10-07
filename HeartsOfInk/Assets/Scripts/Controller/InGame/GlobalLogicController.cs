@@ -529,7 +529,7 @@ public class GlobalLogicController : MonoBehaviour
             //TODO: Terminar de adaptar condición de victoria a alianzas
             foreach (CityController city in cities)
             {
-                if (city.Owner == null || city.Owner != firstOwner)
+                if (city.Owner == null || city.Owner.Alliance != firstOwner.Alliance)
                 {
                     isGameFinished = false;
                     break;
