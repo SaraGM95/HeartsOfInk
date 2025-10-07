@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AnalyticsServer.Models;
+using Assets.Scripts.Controller.Debug;
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Constants;
 using Assets.Scripts.DataAccess;
@@ -60,7 +61,7 @@ public class UpdateGameController : MonoBehaviour
                         MapModelOut newMapModel = await GetMapToUpdate(newMapModelHeader);
                         MapDAC.SaveMapHeader(newMapModelHeader, GlobalConstants.RootPath);
                         MapDAC.SaveMapDefinition(newMapModel.MapModel, GlobalConstants.RootPath);
-                        MapSpriteDAC.SaveMapSprite(GlobalConstants.RootPath, newMapModel.MapModel.SpriteName, newMapModel.BackgroundImage);
+                        MapSpriteDAC.SaveMapSprite(newMapModel.MapModel.SpriteName, newMapModel.BackgroundImage);
                     }
                     else
                     {
@@ -133,6 +134,7 @@ public class UpdateGameController : MonoBehaviour
         }
         catch (Exception ex)
         {
+            DebugStaticHolder.FirstBugMessage = "UpdateGameController.GetPendingUpdates() -> " + ex.Message + ", stacktrace: " + ex.StackTrace;
             Debug.LogException(ex);
             LogManager.SendException(exceptionSender, ex, "UpdateGameController.GetPendingUpdates()", SceneManager.GetActiveScene().name);
             sceneChangeController.ChangeScene(SceneChangeController.Scenes.AcceptPolicy);

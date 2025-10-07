@@ -90,7 +90,6 @@
     <None Include="Assets\Plugins\Rawgen\Libraries\Rawgen Studio Models.dll" />
     <None Include="Assets\Plugins\SignalR\System.Threading.Channels.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Primitives.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\Newtonsoft.Json.xml" />
     <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Client.Core.dll" />
     <None Include="Assets\Plugins\Rawgen\Libraries\Rawgen.Math.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.DependencyInjection.dll" />
@@ -98,7 +97,6 @@
     <None Include="Assets\Plugins\SignalR\System.Threading.Tasks.Extensions.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll" />
     <None Include="Assets\Plugins\SignalR\System.Memory.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\Newtonsoft.Json.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Client.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Features.dll" />
     <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Options.dll" />
@@ -683,7 +681,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Plugins\Rawgen\Libraries\Newtonsoft.Json.dll</HintPath>
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.SignalR.Client">

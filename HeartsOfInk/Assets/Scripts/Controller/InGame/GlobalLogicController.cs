@@ -121,11 +121,12 @@ public class GlobalLogicController : MonoBehaviour
             else
             {
                 ChangeSpeed(GameSpeedConstants.PlaySpeed);
-                //waitingPanel.Show(this);
+                waitingPanel.Show(this);
 
                 Debug.Log(
-                    "Subscribe to IngameHOIServer with player id: " + thisPcPlayer.MapPlayerSlotId
-                );
+                    "Subscribe to IngameHOIServer with player id: " + thisPcPlayer.MapPlayerSlotId);
+                LogManager.SendLog(logSender, "Subscribe to IngameHOIServer with player id: " + thisPcPlayer.MapPlayerSlotId);
+
                 IngameHOIHub.Instance.SuscribeToRoom(gameModel.GameKey, thisPcPlayer.MapPlayerSlotId);
                 StartGameIngameSignalR.Instance.SendClientReady(gameModel.GameKey);
             }
@@ -153,11 +154,6 @@ public class GlobalLogicController : MonoBehaviour
             string errorMsg = "Unexpected type of game: " + gameModel.Gametype;
             LogManager.SendException(exceptionSender, new Exception(errorMsg), string.Empty, SceneManager.GetActiveScene().name);
             Debug.LogWarning(errorMsg);
-        }
-
-        if (IsMultiplayerHost || IsMultiplayerClient)
-        {
-            TroopDeadSignalR.GlobalLogicController = this;
         }
 
         UpdateUnitAnimation();

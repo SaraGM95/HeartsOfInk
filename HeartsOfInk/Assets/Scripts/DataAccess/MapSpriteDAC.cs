@@ -13,20 +13,8 @@ namespace Assets.Scripts.DataAccess
             Texture2D texture = new Texture2D(2, 2);
             Rect rect;
             Vector2 pivot = new Vector2(0.5f, 0.5f);
-            string fullPath;
+            string fullPath = GetMapSpritePath();
 
-            fullPath = Application.persistentDataPath;
-            if (!fullPath.EndsWith("/") && !fullPath.EndsWith("\\"))
-            {
-                fullPath += "/";
-            }
-
-            // Debido a los múltiples origenes de datos a veces viene "MapSprites" al final y otras veces no.
-            if (!fullPath.EndsWith("MapSprites"))
-            {
-                fullPath += "MapSprites";
-            }
-            
             fullPath += spriteName.StartsWith("/") ? spriteName : "/" + spriteName;
             imageData = File.ReadAllBytes(fullPath);
             texture.LoadImage(imageData);
@@ -37,21 +25,14 @@ namespace Assets.Scripts.DataAccess
             return result;
         }
 
-        public static void SaveMapSprite(string rootPath, string spriteName, string sprite)
+        public static void SaveMapSprite(string spriteName, string sprite)
         {
             byte[] allBytes = null;
             string fullPath;
 
             try
             {
-                fullPath = rootPath;
-
-                if (!fullPath.EndsWith("/") && !fullPath.EndsWith("\\"))
-                {
-                    fullPath += "/";
-                }
-
-                fullPath += "MapSprites/";
+                fullPath = GetMapSpritePath();
                 Directory.CreateDirectory(fullPath);
 
                 fullPath += spriteName.StartsWith("/") ? spriteName : "/" + spriteName;
@@ -62,6 +43,24 @@ namespace Assets.Scripts.DataAccess
             {
                 throw;
             }
+        }
+
+        public static string GetMapSpritePath()
+        {
+            string fullPath = Application.persistentDataPath;
+            if (!fullPath.EndsWith("/") && !fullPath.EndsWith("\\"))
+            {
+                fullPath += "/";
+            }
+
+            // Todo: revisar, es posible que esto ya no sea así.
+            // Debido a los múltiples origenes de datos a veces viene "MapSprites" al final y otras veces no.
+            if (!fullPath.EndsWith("MapSprites"))
+            {
+                fullPath += "MapSprites";
+            }
+
+            return fullPath;
         }
     }
 }
