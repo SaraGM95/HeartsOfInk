@@ -1,6 +1,6 @@
 ﻿using NETCoreServer.Models;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -38,6 +38,15 @@ namespace Assets.Scripts.DataAccess
         private int callsMaked;
         public float AverageTimeForCalls { get { return totalExecutionTime / callsMaked; } }
         public bool MakingCall { get { return makingCall; } }
+        private JsonSerializerSettings SafeSettings => new JsonSerializerSettings
+        {
+            ContractResolver = new DefaultContractResolver
+            {
+                // Este resolver usa reflexión estándar, compatible con Android/iOS
+                IgnoreSerializableInterface = true
+            },
+            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+        };
 
         public WebServiceCallerReusable(string baseAddress)
         {
@@ -72,7 +81,7 @@ namespace Assets.Scripts.DataAccess
             {
                 if (requestBody != null)
                 {
-                    json = JsonConvert.SerializeObject(requestBody);
+                    json = JsonConvert.SerializeObject(requestBody, SafeSettings);
 
                     Debug.Log($"Sending to: {client.BaseAddress + targetRequest} json: {json}");
                 }
@@ -96,7 +105,7 @@ namespace Assets.Scripts.DataAccess
                 }
 
                 responseContent = await response.Content.ReadAsStringAsync();
-                serverResponse = JsonConvert.DeserializeObject<HOIResponseModel<S>>(responseContent);
+                serverResponse = JsonConvert.DeserializeObject<HOIResponseModel<S>>(responseContent, SafeSettings);
                 LogConnectionResponse(response.StatusCode);
 
                 end = DateTime.Now.Ticks;
