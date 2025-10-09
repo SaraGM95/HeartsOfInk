@@ -1,13 +1,9 @@
 ﻿using NETCoreServer.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assets.Scripts.Data
 {
-    public class FactionStatistics
+    public class PlayerStatistics
     {
         public Player Player { get; private set; }
         public int OwnUnitsLost { get; private set; }
@@ -21,7 +17,7 @@ namespace Assets.Scripts.Data
         public int MaxCities { get; private set; }
         public int CitiesAtEnd { get; private set; }
 
-        public FactionStatistics(Player player)
+        public PlayerStatistics(Player player)
         {
             Player = player;
             OwnUnitsLost = 0;

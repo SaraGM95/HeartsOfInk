@@ -84,6 +84,7 @@
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\EnvMapAnimator.cs" />
     <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\TroopStateModel.cs" />
     <Compile Include="Assets\Scripts\Controller\Multiplayer\ConfigGameController.cs" />
+    <Compile Include="Assets\Scripts\Data\PlayerStatistics.cs" />
     <Compile Include="Assets\Scripts\Data\Constants\LanguageConstants.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_TextSelector_A.cs" />
     <Compile Include="Assets\Scripts\Rawgen\Literals\LiteralsFactory.cs" />
@@ -96,7 +97,6 @@
     <Compile Include="Assets\Scripts\Controller\Debug\DebugStaticHolder.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\ChatController.cs" />
     <Compile Include="Assets\Scripts\DataAccess\MapSpriteDAC.cs" />
-    <Compile Include="Assets\Scripts\Data\FactionStatistics.cs" />
     <Compile Include="Assets\Scripts\Controller\OptionsMenu\OptionsSceneController.cs" />
     <Compile Include="Assets\Scripts\Data\GlobalInfo\GlobalInfoBonus.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\TMP_DigitValidator.cs" />
@@ -170,6 +170,7 @@
     <Compile Include="Assets\Scripts\Data\Log.cs" />
     <Compile Include="Assets\Scripts\Controller\InGame\TroopController.cs" />
     <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\AttackTroopModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\ButtonPlatformOptionsController.cs" />
     <Compile Include="Assets\Scripts\Controller\Multiplayer\GamesListController.cs" />
     <Compile Include="Assets\Scripts\Controller\Multiplayer\CreateGameController.cs" />
     <Compile Include="Assets\Scripts\Controller\MapEditor\EditorEntitiesController.cs" />
@@ -822,16 +823,16 @@
       <HintPath>Assets\Plugins\Rawgen\Libraries\PNGUtility.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
       <HintPath>Assets\Plugins\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Mono.Cecil">
       <HintPath>Library\PackageCache\com.unity.nuget.mono-cecil@d6f9955a5d5f\Mono.Cecil.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>Assets\Plugins\Rawgen\Libraries\Newtonsoft.Json.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.SignalR.Client">
