@@ -39,7 +39,28 @@ public class LogManager
         }
     }
 
+    [Obsolete("Use WebServiceCallerReusable version instead")]
     public static void SendException(WebServiceCaller<LogExceptionDto, bool> errorSender, Exception ex, string additionalInfo, string scene)
+    {
+        try
+        {
+            if (exceptionsSendedInSession < MaxExceptionsInSession)
+            {
+                Interlocked.Increment(ref exceptionsSendedInSession);
+
+                if (LogsEnabled)
+                {
+                    SendException(errorSender, ex, $"Content: {additionalInfo}, Scene: {scene}");
+                }
+            }
+        }
+        catch (Exception innerEx)
+        {
+            DebugStaticHolder.FirstBugMessage = "UpdateGameController.GetPendingUpdates() -> " + innerEx.Message + ", stacktrace: " + innerEx.StackTrace;
+        }
+    }
+
+    public static void SendException(WebServiceCallerReusable<LogExceptionDto, bool> errorSender, Exception ex, string additionalInfo, string scene)
     {
         try
         {
@@ -81,6 +102,7 @@ public class LogManager
         }
     }
 
+    [Obsolete("Use WebServiceCallerReusable version instead")]
     private static void SendException(WebServiceCaller<LogExceptionDto, bool> errorSender, Exception ex, string addittionalInfo)
     {
         Exception innerException = ex;
@@ -105,6 +127,33 @@ public class LogManager
         if (LogsEnabled)
         {
             errorSender.GenericWebServiceCaller(ApiConfig.LoggingServerUrl, Method.POST, "Exception", logExceptionDto);
+        }
+    }
+
+    private static void SendException(WebServiceCallerReusable<LogExceptionDto, bool> errorSender, Exception ex, string addittionalInfo)
+    {
+        Exception innerException = ex;
+
+        while (innerException.InnerException != null)
+        {
+            innerException = innerException.InnerException;
+        }
+
+        LogExceptionDto logExceptionDto = new LogExceptionDto()
+        {
+            ExceptionType = innerException.GetType().ToString(),
+            Message = innerException.Message,
+            StackTrace = innerException.StackTrace,
+            Content = addittionalInfo,
+            Application = LogDto.ApplicationEnum.HeartsOfInk,
+            SessionIdentifier = GetSessionId(),
+            ApplicationVersion = ApplicationVersion,
+            UserName = "Pending implementation"
+        };
+
+        if (LogsEnabled)
+        {
+            errorSender.GenericWebServiceCaller(Method.POST, "Exception", logExceptionDto);
         }
     }
 
