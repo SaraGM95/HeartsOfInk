@@ -10,10 +10,10 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{7EF82DE2-6E49-00E4-4CD0-ACE2EBDECC15}</ProjectGuid>
+    <ProjectGuid>{E7793341-95BB-0295-D941-D65D3464990E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <AssemblyName>Assembly-CSharp-firstpass</AssemblyName>
+    <AssemblyName>NewAssembly</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <BaseDirectory>.</BaseDirectory>
@@ -50,7 +50,7 @@
     <UnityProjectGenerator>Package</UnityProjectGenerator>
     <UnityProjectGeneratorVersion>2.0.23</UnityProjectGeneratorVersion>
     <UnityProjectGeneratorStyle>Legacy</UnityProjectGeneratorStyle>
-    <UnityProjectType>GamePlugins:3</UnityProjectType>
+    <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>Android:13</UnityBuildTarget>
     <UnityVersion>6000.1.9f1</UnityVersion>
   </PropertyGroup>
@@ -61,47 +61,133 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Plugins\Rawgen\Models\StaticCollidersOptionsModel.cs" />
-    <Compile Include="Assets\Plugins\Rawgen\Utils\FoldersUtils.cs" />
-    <Compile Include="Assets\Plugins\Rawgen\Logic\StaticCollidersLogic.cs" />
+    <Compile Include="Assets\Scripts\Controller\MenuPanelController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InfoPanelController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\CircleRotationAnimation.cs" />
+    <Compile Include="Assets\Scripts\Utils\AllianceUtils.cs" />
+    <Compile Include="Assets\Scripts\Utils\FileUtils.cs" />
+    <Compile Include="Assets\Scripts\Data\GlobalInfo\GlobalInfoFaction.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\KeyConstants.cs" />
+    <Compile Include="Assets\Scripts\Controller\DebugPanelController.cs" />
+    <Compile Include="Assets\Scripts\Logic\CombatLogic.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\GlobalLogicController.cs" />
+    <Compile Include="Assets\Scripts\Utils\CameraUtils.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\CreateMapPanelController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\ScoreDisplay.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\GameStateModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\GameItemController.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\WebServiceCallerReusable.cs" />
+    <Compile Include="Assets\Scripts\Controller\MainMenu\FactionsPanelController.cs" />
+    <Compile Include="Assets\Scripts\Logic\LogManager.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\TroopStateModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\ConfigGameController.cs" />
+    <Compile Include="Assets\Scripts\Data\PlayerStatistics.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\LanguageConstants.cs" />
+    <Compile Include="Assets\Scripts\Rawgen\Literals\LiteralsFactory.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\JoinGameController.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\WebServiceCaller.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\IObjectAnimator.cs" />
+    <Compile Include="Assets\Scripts\Controller\Debug\DebugStaticHolder.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\MapSpriteDAC.cs" />
+    <Compile Include="Assets\Scripts\Controller\OptionsMenu\OptionsSceneController.cs" />
+    <Compile Include="Assets\Scripts\Data\GlobalInfo\GlobalInfoBonus.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\LobbySignalR\StartCountdownSignalR.cs" />
+    <Compile Include="Assets\Scripts\Controller\GameOptionsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\UIAnimator.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\IngameSignalR\IngameHOIHub.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\StateController.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\GameSpeedConstants.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\TutorialController.cs" />
+    <Compile Include="Assets\Scripts\Data\TutorialModels\TutorialStep.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\FileDAC.cs" />
+    <Compile Include="Assets\Scripts\Utils\VectorUtils.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\IngameSignalR\StartGameIngameSignalR.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\SoundEffectsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\TimedSceneChange.cs" />
+    <Compile Include="Assets\Scripts\Rawgen\FPSMetrics.cs" />
+    <Compile Include="Assets\Scripts\Rawgen\Models\CachedCollider2D.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\Tags.cs" />
+    <Compile Include="Assets\Scripts\Data\Security\UserSession.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\IngameSignalR\AttackTroopSignalR.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\EditorPanelController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\IngameSignalR\MoveTroopSignalR.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\PlayerPrefsData.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\CityController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Debug\DebugButtonController.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\UploadMapController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\LobbySignalR\ConfigLinesUpdater.cs" />
+    <Compile Include="Assets\Scripts\Data\TroopModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\CreditsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\ZoomButtonsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\MainMenu\MainMenuLiteralsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\WaitingPanelController.cs" />
+    <Compile Include="Assets\Scripts\Controller\AcceptPolicy\AcceptTermsController.cs" />
+    <Compile Include="Assets\Scripts\Logic\LanguageManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\EditorCityController.cs" />
+    <Compile Include="Assets\Scripts\Data\CombatResults.cs" />
+    <Compile Include="Assets\Scripts\Rawgen\Literals\Literal.cs" />
+    <Compile Include="Assets\Scripts\Controller\LoginController.cs" />
+    <Compile Include="Assets\Scripts\Utils\DropdownIndexer.cs" />
+    <Compile Include="Assets\Scripts\Data\GlobalInfo\GlobalInfo.cs" />
+    <Compile Include="Assets\Scripts\Controller\ScoreManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\Endgame\EndgameLineController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\LobbySignalR\LobbyHOIHub.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\EditorTroopController.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\ApiConfig.cs" />
+    <Compile Include="Assets\Scripts\Data\SelectionModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\StatisticsController.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\CityStateModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\MusicController.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\GlobalInfoDAC.cs" />
+    <Compile Include="Assets\Scripts\Rawgen\RuntimeColliderManager2D.cs" />
+    <Compile Include="Assets\Scripts\Controller\ChangeCursorController.cs" />
+    <Compile Include="Assets\Scripts\Data\TutorialModels\TutorialModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\MainSceneController.cs" />
+    <Compile Include="Assets\Scripts\Data\AxisData.cs" />
+    <Compile Include="Assets\Scripts\Utils\PanelUtils.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\LiteralsDAC.cs" />
+    <Compile Include="Assets\Scripts\Controller\MainMenu\FactionItemController.cs" />
+    <Compile Include="Assets\Scripts\Data\Log.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\TroopController.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\AttackTroopModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\ButtonPlatformOptionsController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\GamesListController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\CreateGameController.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\EditorEntitiesController.cs" />
+    <Compile Include="Assets\Scripts\Controller\StartGameController.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\EditorPauseController.cs" />
+    <Compile Include="Assets\Scripts\Logic\SecurityLogic.cs" />
+    <Compile Include="Assets\Scripts\Data\Constants\GlobalConstants.cs" />
+    <Compile Include="Assets\Scripts\Utils\ColorUtils.cs" />
+    <Compile Include="Assets\Scripts\Utils\RandomUtils.cs" />
+    <Compile Include="Assets\Scripts\Data\OptionsModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\LobbySignalR\StartGameLobbySignalR.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\SceneChangeController.cs" />
+    <Compile Include="Assets\Scripts\Logic\InGameLogic.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\MoveTroopModel.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\AcceptTermsDAC.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapController.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\SubMenuPanelController.cs" />
+    <Compile Include="Assets\Scripts\Logic\AILogic.cs" />
+    <Compile Include="Assets\Scripts\Utils\TimeUtils.cs" />
+    <Compile Include="Assets\Scripts\Controller\Generic\UpdateGameController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\IObjectSelectable.cs" />
+    <Compile Include="Assets\Scripts\Data\Literals\LiteralModel.cs" />
+    <Compile Include="Assets\Scripts\Controller\Multiplayer\DropdownController.cs" />
+    <Compile Include="Assets\Scripts\Utils\StringUtils.cs" />
+    <Compile Include="Assets\Scripts\Logic\OptionsManager.cs" />
+    <Compile Include="Assets\Scripts\Controller\Debug\SceneDebugController.cs" />
+    <Compile Include="Assets\Scripts\Controller\InGame\TargetPositionMarkerController.cs" />
+    <Compile Include="Assets\Scripts\Data\Literals\MainMenuLiterals.cs" />
+    <Compile Include="Assets\Scripts\Controller\CameraController.cs" />
+    <Compile Include="Assets\Scripts\DataAccess\OptionsSceneDAC.cs" />
+    <Compile Include="Assets\Scripts\Controller\Endgame\GlobalEndgameController.cs" />
+    <Compile Include="Assets\Scripts\Data\MultiplayerStateModels\StateGameModelIn.cs" />
+    <Compile Include="Assets\Scripts\Controller\MapEditor\MapEditorLogicController.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Plugins\SignalR\System.Diagnostics.DiagnosticSource.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\zlib.net.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\RawGen.Diagnosis.dll" />
-    <None Include="Assets\Plugins\Rawgen\LICENSE.txt" />
-    <None Include="Assets\Plugins\SignalR\System.Numerics.Vectors.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.Http.Connections.Client.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.Connections.Abstractions.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\AnalyticsServer.Models.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\ASCUtility.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Protocols.Json.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\HeartsOfInk.SharedLogic.dll" />
-    <None Include="Assets\Plugins\SignalR\System.IO.Pipelines.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Text.Json.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Bcl.AsyncInterfaces.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Logging.Abstractions.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\LobbyHOIServer.Models.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Text.Encodings.Web.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\Rawgen DataAccess.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Runtime.CompilerServices.Unsafe.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Common.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\Rawgen Studio Models.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Threading.Channels.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Primitives.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Client.Core.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\Rawgen.Math.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.DependencyInjection.dll" />
-    <None Include="Assets\Plugins\Rawgen\Libraries\PNGUtility.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Threading.Tasks.Extensions.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Memory.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.AspNetCore.SignalR.Client.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Features.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Options.dll" />
-    <None Include="Assets\Plugins\SignalR\System.Buffers.dll" />
-    <None Include="Assets\Plugins\SignalR\Microsoft.Extensions.Logging.dll" />
+    <None Include="Assets\Scripts\Rawgen\LICENSE.txt" />
+    <None Include="Assets\Scripts\NewAssembly.asmdef" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
@@ -556,6 +642,30 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\Managed\UnityEngine\UnityEditor.XRModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEditor.Graphs">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\Managed\UnityEditor.Graphs.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.OSXStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\PlaybackEngines\MacStandaloneSupport\UnityEditor.OSXStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.WindowsStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.Android.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\PlaybackEngines\AndroidPlayer\UnityEditor.Android.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEditor.LinuxStandalone.Extensions">
+      <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\PlaybackEngines\LinuxStandaloneSupport\UnityEditor.LinuxStandalone.Extensions.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.YamlDotNet">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Editor\VisualScripting.Core\Dependencies\YamlDotNet\Unity.VisualScripting.YamlDotNet.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="System.Diagnostics.DiagnosticSource">
       <HintPath>Assets\Plugins\SignalR\System.Diagnostics.DiagnosticSource.dll</HintPath>
       <Private>False</Private>
@@ -584,6 +694,14 @@
       <HintPath>Assets\Plugins\SignalR\Microsoft.AspNetCore.Connections.Abstractions.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="unityplastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@c854d1f7d97f\Lib\Editor\unityplastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Antlr3.Runtime">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@c854d1f7d97f\Lib\Editor\Unity.Plastic.Antlr3.Runtime.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AnalyticsServer.Models">
       <HintPath>Assets\Plugins\Rawgen\Libraries\AnalyticsServer.Models.dll</HintPath>
       <Private>False</Private>
@@ -598,6 +716,18 @@
     </Reference>
     <Reference Include="HeartsOfInk.SharedLogic">
       <HintPath>Assets\Plugins\Rawgen\Libraries\HeartsOfInk.SharedLogic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.Plastic.Newtonsoft.Json">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@c854d1f7d97f\Lib\Editor\Unity.Plastic.Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="log4netPlastic">
+      <HintPath>Library\PackageCache\com.unity.collab-proxy@c854d1f7d97f\Lib\Editor\log4netPlastic.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.IonicZip">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Editor\VisualScripting.Core\Dependencies\DotNetZip\Unity.VisualScripting.IonicZip.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="System.IO.Pipelines">
@@ -674,6 +804,10 @@
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>Library\PackageCache\com.unity.nuget.newtonsoft-json@74deb55db2a0\Runtime\Newtonsoft.Json.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="Unity.VisualScripting.TextureAssets">
+      <HintPath>Library\PackageCache\com.unity.visualscripting@6279e2b7c485\Editor\VisualScripting.Core\EditorAssetResources\Unity.VisualScripting.TextureAssets.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
@@ -1200,212 +1334,16 @@
       <HintPath>C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\NetStandard\compat\2.1.0\shims\netfx\System.Xml.Serialization.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.2D.Tilemap.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Aseprite.Common">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Rider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Collections.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Collections.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="PsdPlugin">
-      <HintPath>Library\ScriptAssemblies\PsdPlugin.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Shared.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Shared.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Multiplayer.Center.Common">
-      <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Common.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Path.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Path.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.IK.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.IK.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Tilemap.Extras">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Tilemap.Extras.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Common.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Common.Runtime.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Timeline">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Mathematics">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.SettingsProvider.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.SettingsProvider.Editor.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="Unity.PlasticSCM.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.PlasticSCM.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Aseprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Aseprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Toolchain.Win-x86_64-Linux-x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Toolchain.Win-x86_64-Linux-x86_64.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Multiplayer.Center.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Multiplayer.Center.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.State">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.State.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.SpriteShape.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.SpriteShape.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Sprite.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Sprite.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Sysroot.Linux_x86_64">
-      <HintPath>Library\ScriptAssemblies\Unity.Sysroot.Linux_x86_64.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Psdimporter.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Psdimporter.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Burst.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.Animation.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.Animation.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Collections">
-      <HintPath>Library\ScriptAssemblies\Unity.Collections.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.Burst">
-      <HintPath>Library\ScriptAssemblies\Unity.Burst.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualStudio.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEditorBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEditorBridge.001.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.2D.PixelPerfect.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.2D.PixelPerfect.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Flow">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Flow.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.VisualScripting.Core">
-      <HintPath>Library\ScriptAssemblies\Unity.VisualScripting.Core.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.InternalAPIEngineBridge.001">
-      <HintPath>Library\ScriptAssemblies\Unity.InternalAPIEngineBridge.001.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
-    <Reference Include="Unity.SysrootPackage.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.SysrootPackage.Editor.dll</HintPath>
-      <Private>False</Private>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="EditModeTests.csproj">
-      <Project>{94D86B60-5F8A-5FAC-C15E-335720969332}</Project>
-      <Name>EditModeTests</Name>
-    </ProjectReference>
-    <ProjectReference Include="HeartsOfInk.csproj">
-      <Project>{0F81EFC5-33C5-34E7-8301-878B2843B3DD}</Project>
-      <Name>HeartsOfInk</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

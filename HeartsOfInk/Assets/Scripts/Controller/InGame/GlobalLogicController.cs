@@ -6,6 +6,7 @@ using Assets.Scripts.Controller.InGame;
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Constants;
 using Assets.Scripts.DataAccess;
+using Assets.Scripts.Logic;
 using Assets.Scripts.Utils;
 using HeartsOfInk.SharedLogic;
 using LobbyHOIServer.Models.MapModels;
@@ -25,6 +26,7 @@ public class GlobalLogicController : MonoBehaviour
     private WebServiceCaller<LogAnalyticsDto, bool> analyticSender =
         new WebServiceCaller<LogAnalyticsDto, bool>();
     private bool manualMultiselectEnabled = false;
+    private InGameLogic ingameLogic = new InGameLogic();
 
     /// <summary>
     /// Contador que se utiliza para que las unidades clonadas no tengan el mismo nombre.
@@ -157,7 +159,12 @@ public class GlobalLogicController : MonoBehaviour
         }
 
         UpdateUnitAnimation();
-        CheckVictoryConditions();
+        bool isGameFinished = IsGameFinished();
+        if (isGameFinished)
+        {
+            sceneChangeController.ChangeScene(Scenes.Endgame);
+            statisticsController.ReportGameEnd(cities);
+        }
         UpdateMultiselect();
     }
 
@@ -506,58 +513,20 @@ public class GlobalLogicController : MonoBehaviour
     /// <summary>
     /// Lógica multiplayer/singleplayer: Sirve para los dos de forma temporal, revisar funcionamiento a futuro.
     /// </summary>
-    private void CheckVictoryConditions()
+    private bool IsGameFinished()
     {
-        bool isGameFinished = true;
-        Player firstOwner;
-        byte firstOwnerAlliance;
-
+        List<Player> cityOwners = cities.Select(city => city.Owner).Distinct().ToList();
         try
         {
-            firstOwner = cities[0].Owner;
-
-            if (cities[0].Owner == null)
-            {
-                // En algunos casos la ciudad no tiene owner y por lo tanto no tiene alianza.
-                firstOwnerAlliance = 255;
-            }
-            else
-            {
-                firstOwnerAlliance = cities[0].Owner.Alliance;
-            }
-
-            //TODO: Terminar de adaptar condición de victoria a alianzas
-            foreach (CityController city in cities)
-            {
-                if (city.Owner == null || city.Owner.Alliance != firstOwner.Alliance)
-                {
-                    isGameFinished = false;
-                    break;
-                }
-            }
-
-            if (isGameFinished)
-            {
-                sceneChangeController.ChangeScene(Scenes.Endgame);
-                statisticsController.ReportGameEnd(cities);
-            }
+            cityOwners = cities.Select(city => city.Owner).Distinct().ToList();
+            return ingameLogic.IsGameFinished(cityOwners);
         }
         catch (Exception ex)
         {
-            Debug.LogWarning($"Error debug: Cities length {cities.Count}");
-            if (cities.Count > 0)
-            {
-                if (cities[0].Owner == null)
-                {
-                    Debug.LogError(new Exception($"cities[0].Owner {cities[0].name} is null on {ex.StackTrace}"));
-                }
-                else
-                {
-                    Debug.LogWarning($"Error debug: Owner info: {cities[0]}");
-                }
-            }
-            LogManager.SendException(exceptionSender, ex, string.Empty, SceneManager.GetActiveScene().name);
             Debug.LogException(ex);
+            Debug.LogError("IsGameFinished failed, total owners: " + cityOwners.Count);
+            LogManager.SendException(exceptionSender, ex, "IsGameFinished failed, total owners: " + cityOwners.Count, SceneManager.GetActiveScene().name);
+            return false;
         }
     }
 
