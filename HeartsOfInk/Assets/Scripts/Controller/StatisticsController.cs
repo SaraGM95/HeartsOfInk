@@ -1,40 +1,44 @@
 ﻿using Assets.Scripts.Data;
+using Assets.Scripts.Logic;
 using NETCoreServer.Models;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class StatisticsController : MonoBehaviour
 {
-    List<FactionStatistics> factionsStatistics;
+    private readonly StatisticsLogic logic = new StatisticsLogic();
+    public List<PlayerStatistics> playersStats = new List<PlayerStatistics>();
+    public PlayerStatistics ThisPcPlayerStats 
+    {   get 
+        {
+            if (playersStats.Count == 0)
+            {
+                throw new System.Exception("playersStats is empty, don't have players");
+            }
+            else
+            {
+                return playersStats.FirstOrDefault(playerStats => playerStats.Player.IaId == Player.IA.PLAYER);
+            }
+        } 
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        factionsStatistics = new List<FactionStatistics>();
-
-        //factionsStatistics.Add(new FactionStatistics(Faction.Id.GOVERNMENT));
-        //factionsStatistics.Add(new FactionStatistics(Faction.Id.NOMADS));
-        //factionsStatistics.Add(new FactionStatistics(Faction.Id.REBELS));
-        //factionsStatistics.Add(new FactionStatistics(Faction.Id.VUKIS));
-
         DontDestroyOnLoad(gameObject);
     }
 
-    // Update is called once per frame
-    void Update()
+    public PlayerStatistics GetPlayerStats(Player factionId)
     {
-        
+        return playersStats.Find(item => item.Player == factionId);
     }
 
-    public FactionStatistics GetFaction(Player factionId)
+    public PlayerStatistics GetPlayerStatsByPlayername(string playerName)
     {
-        return factionsStatistics.Find(item => item.Player == factionId);
-    }
-    public FactionStatistics GetFactionByName(string playerName)
-    {
-        if (factionsStatistics != null)
+        if (playersStats != null)
         {
-            return factionsStatistics.Find(item => item.Player.ToString() == playerName);
+            return playersStats.Find(item => item.Player.ToString() == playerName);
         }
         else
         {
@@ -47,21 +51,28 @@ public class StatisticsController : MonoBehaviour
         Player destroyedFaction = destroyed.troopModel.Player;
         Player destroyerFaction = destroyer.troopModel.Player;
 
-        foreach (FactionStatistics factionStatistics in factionsStatistics)
-        {
-            if (factionStatistics.Player == destroyedFaction ||
-                factionStatistics.Player == destroyerFaction)
-            {
-                factionStatistics.ReportArmyDefeated(destroyedFaction);
-            }
-        }
+        Debug.Log($"ReportArmyDefeated - start. Destroyer: {destroyer}; destroyed: {destroyed}");
+        logic.ReportArmyDefeated(destroyedFaction, destroyerFaction, ref playersStats);
+    }
+
+    public void CreatePlayerStatsFromGame(GameModel gameModel)
+    {
+        logic.CreatePlayerStatsFromGame(gameModel, ref playersStats);
     }
 
     public void ReportGameEnd(List<CityController> cities)
     {
-        foreach (FactionStatistics factionStats in factionsStatistics)
+        foreach (PlayerStatistics playerStats in playersStats)
         {
-            factionStats.SetCitiesAtEnd(cities);
+            playerStats.CitiesAtEnd = 0;
+
+            foreach (CityController city in cities)
+            {
+                if (city.Owner == playerStats.Player)
+                {
+                    playerStats.CitiesAtEnd++;
+                }
+            }
         }
     }
 }

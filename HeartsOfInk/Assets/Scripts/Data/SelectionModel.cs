@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro.Examples;
-using UnityEditor;
 using UnityEngine;
 
 namespace Assets.Scripts.Data
@@ -41,6 +39,7 @@ namespace Assets.Scripts.Data
 
         public void StartMultiselect(Vector3 startPoint, Type selectionType)
         {
+            Debug.Log("StartMultiselect");
             MultiselectOrigin = startPoint;
             SetAsNull();
             ChangeSelection(null, selectionType);
@@ -51,17 +50,13 @@ namespace Assets.Scripts.Data
             if (MultiselectOrigin.HasValue)
             {
                 Bounds bounds = new Bounds();
+                float maxX = MultiselectOrigin.Value.x > multiselectEnd.x ? MultiselectOrigin.Value.x : multiselectEnd.x;
+                float minX = MultiselectOrigin.Value.x < multiselectEnd.x ? MultiselectOrigin.Value.x : multiselectEnd.x;
+                float maxY = MultiselectOrigin.Value.y > multiselectEnd.y ? MultiselectOrigin.Value.y : multiselectEnd.y;
+                float minY = MultiselectOrigin.Value.y < multiselectEnd.y ? MultiselectOrigin.Value.y : multiselectEnd.y;
 
-                if (MultiselectOrigin.Value.x > multiselectEnd.x)
-                {
-                    bounds.max = MultiselectOrigin.Value;
-                    bounds.min = multiselectEnd;
-                }
-                else
-                {
-                    bounds.max = multiselectEnd;
-                    bounds.min = MultiselectOrigin.Value;
-                }
+                bounds.max = new Vector3(maxX, maxY);
+                bounds.min = new Vector3(minX, minY);
 
                 foreach (Transform troopTransform in parentHolder.transform)
                 {
@@ -89,6 +84,22 @@ namespace Assets.Scripts.Data
                 else
                 {
                     ChangeSelection(newSelection.GetGameObject(), type);
+                }
+            }
+        }
+
+        public void UnsetObjectSelected(IObjectSelectable objectToRemove)
+        {
+            if (SelectionObjects != null && SelectionObjects.Contains(objectToRemove.GetGameObject()))
+            {
+                if (SelectionObjects.Count == 1)
+                {
+                    EndSelection();
+                }
+                else if (SelectionObjects.Count > 1)
+                {
+                    SelectionObjects.Remove(objectToRemove.GetGameObject());
+                    objectToRemove.EndSelection();
                 }
             }
         }

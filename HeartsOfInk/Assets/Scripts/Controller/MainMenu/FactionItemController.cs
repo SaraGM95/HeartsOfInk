@@ -8,7 +8,7 @@ public class FactionItemController : MonoBehaviour
 
     public void OnAllianceChange()
     {
-        Debug.Log("OnAllianceChange - Start");
+        Debug.Log("OnAllianceChange - Start. Current text: " + txtAlliance.text);
 
         switch (txtAlliance.text)
         {

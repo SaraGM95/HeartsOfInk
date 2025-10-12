@@ -84,13 +84,14 @@ public class CreateMapPanelController : MonoBehaviour
         MapDAC.SaveMapDefinition(mapModel, GlobalConstants.RootPath);
         editorPanelController.gameObject.SetActive(true);
         editorPanelController.LoadAvailableMaps(displayName);
+        editorPanelController.LoadBackgroundCombo();
     }
 
     public void OnChangeBackground()
     {
         string spriteFilename = background.options[background.value].text;
 
-        mapController.UpdateMap("MapSprites/" + spriteFilename);
+        mapController.UpdateMap(spriteFilename);
         if (string.IsNullOrWhiteSpace(mapName.text))
         {
             mapName.text = spriteFilename;
@@ -103,7 +104,7 @@ public class CreateMapPanelController : MonoBehaviour
         background.AddOptions(MapDAC.GetAvailableSprites(GlobalConstants.RootPath));
         background.RefreshShownValue();
         string spriteFilename = background.options[background.value].text;
-        mapController.UpdateMap("MapSprites/" + spriteFilename);
+        mapController.UpdateMap(spriteFilename);
     }
 
     private void SetBackgroundPath()

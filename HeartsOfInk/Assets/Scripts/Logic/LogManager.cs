@@ -1,4 +1,5 @@
 ﻿using AnalyticsServer.Models;
+using Assets.Scripts.Controller.Debug;
 using Assets.Scripts.Data.Constants;
 using Assets.Scripts.DataAccess;
 using System;
@@ -9,7 +10,7 @@ public class LogManager
     private const int MaxAnalyticsInSession = 10;
     private const int MaxLogsInSession = 10;
     private const int MaxExceptionsInSession = 10;
-    private const string ApplicationVersion = "2024-03-25_1";
+    private const string ApplicationVersion = "Uni_cli.2025-10-07_1";
     private const bool LogsEnabled = true;
     private static readonly object _lock = new object();
     private static string _sessionIdenfier;
@@ -38,16 +39,44 @@ public class LogManager
         }
     }
 
+    [Obsolete("Use WebServiceCallerReusable version instead")]
     public static void SendException(WebServiceCaller<LogExceptionDto, bool> errorSender, Exception ex, string additionalInfo, string scene)
     {
-        if (exceptionsSendedInSession < MaxExceptionsInSession)
+        try
         {
-            Interlocked.Increment(ref exceptionsSendedInSession);
-
-            if (LogsEnabled)
+            if (exceptionsSendedInSession < MaxExceptionsInSession)
             {
-                SendException(errorSender, ex, $"Content: {additionalInfo}, Scene: {scene}");
+                Interlocked.Increment(ref exceptionsSendedInSession);
+
+                if (LogsEnabled)
+                {
+                    SendException(errorSender, ex, $"Content: {additionalInfo}, Scene: {scene}");
+                }
             }
+        }
+        catch (Exception innerEx)
+        {
+            DebugStaticHolder.FirstBugMessage = "UpdateGameController.GetPendingUpdates() -> " + innerEx.Message + ", stacktrace: " + innerEx.StackTrace;
+        }
+    }
+
+    public static void SendException(WebServiceCallerReusable<LogExceptionDto, bool> errorSender, Exception ex, string additionalInfo, string scene)
+    {
+        try
+        {
+            if (exceptionsSendedInSession < MaxExceptionsInSession)
+            {
+                Interlocked.Increment(ref exceptionsSendedInSession);
+
+                if (LogsEnabled)
+                {
+                    SendException(errorSender, ex, $"Content: {additionalInfo}, Scene: {scene}");
+                }
+            }
+        }
+        catch (Exception innerEx)
+        {
+            DebugStaticHolder.FirstBugMessage = "UpdateGameController.GetPendingUpdates() -> " + innerEx.Message + ", stacktrace: " + innerEx.StackTrace;
         }
     }
 
@@ -73,6 +102,7 @@ public class LogManager
         }
     }
 
+    [Obsolete("Use WebServiceCallerReusable version instead")]
     private static void SendException(WebServiceCaller<LogExceptionDto, bool> errorSender, Exception ex, string addittionalInfo)
     {
         Exception innerException = ex;
@@ -97,6 +127,33 @@ public class LogManager
         if (LogsEnabled)
         {
             errorSender.GenericWebServiceCaller(ApiConfig.LoggingServerUrl, Method.POST, "Exception", logExceptionDto);
+        }
+    }
+
+    private static void SendException(WebServiceCallerReusable<LogExceptionDto, bool> errorSender, Exception ex, string addittionalInfo)
+    {
+        Exception innerException = ex;
+
+        while (innerException.InnerException != null)
+        {
+            innerException = innerException.InnerException;
+        }
+
+        LogExceptionDto logExceptionDto = new LogExceptionDto()
+        {
+            ExceptionType = innerException.GetType().ToString(),
+            Message = innerException.Message,
+            StackTrace = innerException.StackTrace,
+            Content = addittionalInfo,
+            Application = LogDto.ApplicationEnum.HeartsOfInk,
+            SessionIdentifier = GetSessionId(),
+            ApplicationVersion = ApplicationVersion,
+            UserName = "Pending implementation"
+        };
+
+        if (LogsEnabled)
+        {
+            errorSender.GenericWebServiceCaller(Method.POST, "Exception", logExceptionDto);
         }
     }
 

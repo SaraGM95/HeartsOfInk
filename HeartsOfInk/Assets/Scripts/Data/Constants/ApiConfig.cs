@@ -1,5 +1,8 @@
 ﻿namespace Assets.Scripts.Data.Constants
 {
+    /// <summary>
+    /// Configuration for API calls. Use http for local testing and https for calls to server.
+    /// </summary>
     class ApiConfig
     {
         // Local
@@ -9,13 +12,18 @@
 
         // Red Local
         //public const string LobbyHOIServerUrl = "http://192.168.1.134:5000/";
-        public const string IngameServerUrl = "http://190.92.134.72:7001/";
+        //public const string IngameServerUrl = "http://190.92.134.72:7001/";
         //public const string LoggingServerUrl = "http://192.168.1.134:44356/";
 
-        // Preproducción
+        // Preproducción http
         public const string LobbyHOIServerUrl = "http://190.92.134.72:5000/";
-        //public const string IngameServerUrl = "http://190.92.134.72:7001/";
+        public const string IngameServerUrl = "http://190.92.134.72:7001/";
         public const string LoggingServerUrl = "http://190.92.134.72:44356/";
+
+        // Preproducción https (not working yet)
+        //public const string LobbyHOIServerUrl = "https://laencarna.com:5009/";
+        //public const string IngameServerUrl = "https://laencarna.com:7009/";
+        //public const string LoggingServerUrl = "https://laencarna.com:44359/";
 
         public const string SignalRHUBName = "signalrhoi";
 

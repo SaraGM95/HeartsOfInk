@@ -46,6 +46,11 @@ public class SceneChangeController : MonoBehaviour
     /// </summary>
     public Transform loginButton;
 
+    /// <summary>
+    /// A button to go to debug scene.
+    /// </summary>
+    public Transform debugButton;
+
     public enum Scenes
     {
         RawgenLogo = 0,
@@ -58,7 +63,8 @@ public class SceneChangeController : MonoBehaviour
         AcceptPolicy = 7,
         Options = 8,
         GameUpdaterScene = 9,
-        Login = 10
+        Login = 10,
+        Debug = 11
     }
 
     /// <summary>
@@ -97,6 +103,10 @@ public class SceneChangeController : MonoBehaviour
         else if (AreEquals(orderButton, loginButton))
         {
             SceneManager.LoadScene(Convert.ToInt32(Scenes.Login));
+        }
+        else if (AreEquals(orderButton, debugButton))
+        {
+            SceneManager.LoadScene(Convert.ToInt32(Scenes.Debug));
         }
         else
         {

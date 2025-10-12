@@ -1,5 +1,7 @@
-﻿using NETCoreServer.Models;
+﻿using Assets.Scripts.Controller.Debug;
+using NETCoreServer.Models;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using System;
 using System.Net.Http;
 using System.Text;
@@ -22,6 +24,16 @@ namespace Assets.Scripts.DataAccess
 
     public class WebServiceCaller<T, S>
     {
+        private JsonSerializerSettings SafeSettings => new JsonSerializerSettings
+        {
+            ContractResolver = new DefaultContractResolver
+            {
+                // Este resolver usa reflexión estándar, compatible con Android/iOS
+                IgnoreSerializableInterface = true
+            },
+            ConstructorHandling = ConstructorHandling.AllowNonPublicDefaultConstructor,
+        };
+
         /// <summary>
         /// Método genérico para llamadas a API.
         /// </summary>
@@ -51,7 +63,7 @@ namespace Assets.Scripts.DataAccess
                 }
                 else
                 {
-                    json = JsonConvert.SerializeObject(requestBody);
+                    json = JsonConvert.SerializeObject(requestBody, SafeSettings);
                     content = new StringContent(json, Encoding.UTF8, "application/json");
 
                     Debug.Log($"Sending to: {baseAdress + targetRequest} json: {json}");
@@ -79,7 +91,7 @@ namespace Assets.Scripts.DataAccess
                     }
 
                     responseContent = await response.Content.ReadAsStringAsync();
-                    serverResponse = JsonConvert.DeserializeObject<HOIResponseModel<S>>(responseContent);
+                    serverResponse = JsonConvert.DeserializeObject<HOIResponseModel<S>>(responseContent, SafeSettings);
                     LogConnectionResponse(response.StatusCode);
 
                     end = DateTime.Now.Ticks;
@@ -91,6 +103,7 @@ namespace Assets.Scripts.DataAccess
             }
             catch (NullReferenceException ex)
             {
+                DebugStaticHolder.FirstBugMessage = "WebServiceCaller Np -> " + ex.Message + ", stacktrace: " + ex.StackTrace;
                 serverResponse = new HOIResponseModel<S>();
 
                 if (response == null)
@@ -106,6 +119,7 @@ namespace Assets.Scripts.DataAccess
             }
             catch (Exception ex)
             {
+                DebugStaticHolder.FirstBugMessage = "WebServiceCaller GenericWebServiceCaller -> " + ex.Message + ", stacktrace: " + ex.StackTrace;
                 serverResponse = new HOIResponseModel<S>();
                 serverResponse.internalResultCode = InternalStatusCodes.KOConnectionCode;
                 Debug.LogError($"Error on connection: {ex} for response {responseContent}");
@@ -137,7 +151,7 @@ namespace Assets.Scripts.DataAccess
                     Debug.LogError("Unexpected error on connection, exception maybe logged in origin method.");
                     break;
                 case InternalStatusCodes.KOCode:
-                    Debug.LogError("Server response with unexpected error: ObjectResponse: " + responseModel.serviceResponse);
+                    Debug.LogError("Server response with unexpected error: ObjectResponse: " + responseModel.serviceResponse + " Error:" + responseModel.ServiceError);
                     break;
                 default:
                     Debug.Log("Server response - InternalResultCode: " + responseModel.internalResultCode);

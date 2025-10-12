@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using AnalyticsServer.Models;
+using Assets.Scripts.Controller.Debug;
 using Assets.Scripts.Data;
 using Assets.Scripts.Data.Constants;
 using Assets.Scripts.DataAccess;
@@ -60,7 +61,7 @@ public class UpdateGameController : MonoBehaviour
                         MapModelOut newMapModel = await GetMapToUpdate(newMapModelHeader);
                         MapDAC.SaveMapHeader(newMapModelHeader, GlobalConstants.RootPath);
                         MapDAC.SaveMapDefinition(newMapModel.MapModel, GlobalConstants.RootPath);
-                        MapSpriteDAC.SaveMapSprite(GlobalConstants.RootPath, newMapModel.MapModel.SpriteName, newMapModel.BackgroundImage);
+                        MapSpriteDAC.SaveMapSprite(newMapModel.MapModel.SpriteName, newMapModel.BackgroundImage);
                     }
                     else
                     {
@@ -74,12 +75,12 @@ public class UpdateGameController : MonoBehaviour
                 else if (instalationFilesQueue.Count > 0)
                 {
                     FileDto newFile = instalationFilesQueue.Dequeue();
+                    string filePath = GlobalConstants.RootPath + "/" + newFile.Path;
 
-                    Debug.LogWarning($"Overwriting instalation file without verify current file version.");
+                    Debug.LogWarning($"Overwriting instalation file without verify current file version on path: {filePath}");
+                    
                     string fileContentbase64 = await GetFileContent(newFile);
-                    byte[] fileContentBytes = Convert.FromBase64String(fileContentbase64);
-
-                    File.WriteAllBytes(GlobalConstants.RootPath + "/" +  newFile.Path, fileContentBytes);
+                    FileDAC.SaveBase64File(fileContentbase64, filePath);
                 }
                 else
                 {
@@ -133,6 +134,7 @@ public class UpdateGameController : MonoBehaviour
         }
         catch (Exception ex)
         {
+            DebugStaticHolder.FirstBugMessage = "UpdateGameController.GetPendingUpdates() -> " + ex.Message + ", stacktrace: " + ex.StackTrace;
             Debug.LogException(ex);
             LogManager.SendException(exceptionSender, ex, "UpdateGameController.GetPendingUpdates()", SceneManager.GetActiveScene().name);
             sceneChangeController.ChangeScene(SceneChangeController.Scenes.AcceptPolicy);

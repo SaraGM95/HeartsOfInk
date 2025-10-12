@@ -405,29 +405,32 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "1. Obtenci\xF3n, almacenamiento y uso de datos\n\nLas referencias a \"informaci\xF3n
-    t\xE9cnica\" de esta politica de privacidad, se pueden referir pero no se limitan
-    a: configuraci\xF3n de la partida, datos referentes al transcurso de la partida
-    como interacciones o resultados de las interacciones, finalizaci\xF3n de la partida,
-    etc.\n\nEste software (Hearts of Ink, desarrollado por el equipo amateur Rawgen
-    Games) almacena informaci\xF3n t\xE9cnica generada por el propio juego. El almacenacimiento
-    de esta informaci\xF3n se puede dar en el propio equipo o en servidores proporcionados
-    por un proveedor de servicios de hosting de terceros (A2 Hosting) (en adelante
-    \"los servidores\"). \"Los servidores\" est\xE1n ubicados en la Uni\xF3n Europea.\n\nLa
-    funcionalidad multijugador de este juego incluye el uso de nicks, que pueden
-    ser considerados informaci\xF3n personal. El nick en uso por parte del usuario
-    (usted, en adelante \"el usuario\"), puede ser enviado tanto a \"los servidores\"
-    como a los dem\xE1s usuarios de las partidas a las que acceda \"el usuario\"
-    o a los usuarios que accedan a partidas creadas por \"el usuario\". Estos usuarios
-    pueden ser de cualquier parte del planeta, incluidos paises fuera de la Uni\xF3n
-    Europea. En la funcionalidad multijugador, no solo el nick recibe este tratamiento
-    (envio a servidores y terceros usuarios) sino tambi\xE9n la informaci\xF3n t\xE9cnica
-    necesaria para el funcionamiento de la partida.\n\nEl uso de la informaci\xF3n
-    almacenada por Rawgen Games en \"los servidores\" tiene como fin mejorar el juego.\n\nEste
+  m_Text: "1. Obtenci\xF3n, almacenamiento y uso de datos\r\n\r\nLas referencias
+    a \"informaci\xF3n t\xE9cnica\" de esta pol\xEDtica de privacidad, se pueden
+    referir pero no se limitan a: configuraci\xF3n de la partida, datos referentes
+    al transcurso de la partida como interacciones o resultados de las interacciones,
+    finalizaci\xF3n de la partida, etc.\r\n\r\nLas referencias al \u201Cequipo de
+    desarrollo\u201D se refieren a Sara Garc\xEDa, desarrolladora principal, y colaboradores
+    ocasionales.\r\n\r\nEste software (Hearts of Ink, desarrollado por el \u201Cequipo
+    de desarrollo\u201D) almacena informaci\xF3n t\xE9cnica generada por el propio
+    juego. El almacenamiento de esta informaci\xF3n se puede dar en el propio equipo
+    o en servidores proporcionados por un proveedor de servicios de hosting de terceros
+    (A2 Hosting) (en adelante \"los servidores\"). \"Los servidores\" est\xE1n ubicados
+    en la Uni\xF3n Europea.\r\n\r\nLa funcionalidad multijugador de este juego incluye
+    el uso de nicks, que pueden ser considerados informaci\xF3n personal. El nick
+    en uso por parte del usuario (usted, en adelante \"el usuario\"), puede ser enviado
+    tanto a \"los servidores\" como a los dem\xE1s usuarios de las partidas a las
+    que acceda \"el usuario\" o a los usuarios que accedan a partidas creadas por
+    \"el usuario\". Estos usuarios pueden ser de cualquier parte del planeta, incluidos
+    pa\xEDses fuera de la Uni\xF3n Europea. En la funcionalidad multijugador, no
+    solo el nick recibe este tratamiento (envio a servidores y terceros usuarios)
+    sino tambi\xE9n la informaci\xF3n t\xE9cnica necesaria para el funcionamiento
+    de la partida.\r\n\r\nEl uso de la informaci\xF3n almacenada en \"los servidores\"
+    tiene como fin mejorar el juego por parte del \u201Cequipo de desarrollo\u201D.\r\n\r\nEste
     juego est\xE1 desarrollado usando Unity, un motor de desarrollo de videojuegos
-    desarrollado por Unity Technologies, que tiene su propia politica de privacidad.
+    desarrollado por Unity Technologies, que tiene su propia pol\xEDtica de privacidad.
     Con la aceptaci\xF3n de esta politica de privacidad aceptas tambi\xE9n la politica
-    de Unity, que puedes encontrar en el siguiente enlace: https://unity.com/legal/game-player-and-app-user-privacy-policy\n\n\n\n\n\n"
+    de Unity, que puedes encontrar en el siguiente enlace: https://unity.com/legal/game-player-and-app-user-privacy-policy\r\n"
 --- !u!222 &320573013
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -818,6 +821,7 @@ MonoBehaviour:
   startGame: {fileID: 0}
   optionsButton: {fileID: 0}
   mapEditorButton: {fileID: 0}
+  loginButton: {fileID: 0}
 --- !u!1 &1082013958
 GameObject:
   m_ObjectHideFlags: 0

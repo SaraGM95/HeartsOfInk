@@ -1,0 +1,5 @@
+C:/Repositorios/HeartsOfInk/HeartsOfInk/.utmp/RelWithDebInfo/4k6n6k1q/armeabi-v7a/CMakeFiles/edit_cache.dir
+C:/Repositorios/HeartsOfInk/HeartsOfInk/.utmp/RelWithDebInfo/4k6n6k1q/armeabi-v7a/CMakeFiles/rebuild_cache.dir
+C:/Repositorios/HeartsOfInk/HeartsOfInk/.utmp/RelWithDebInfo/4k6n6k1q/armeabi-v7a/FramePacing/CMakeFiles/swappywrapper.dir
+C:/Repositorios/HeartsOfInk/HeartsOfInk/.utmp/RelWithDebInfo/4k6n6k1q/armeabi-v7a/FramePacing/CMakeFiles/edit_cache.dir
+C:/Repositorios/HeartsOfInk/HeartsOfInk/.utmp/RelWithDebInfo/4k6n6k1q/armeabi-v7a/FramePacing/CMakeFiles/rebuild_cache.dir

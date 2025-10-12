@@ -8,7 +8,7 @@ public class ChangeCursorController : MonoBehaviour
     public TroopController troopController;
     private void OnMouseEnter()
     {
-        if (!troopController.IsAllyTroop() )
+        if (!troopController.IsAllyTroop())
         {
             Cursor.SetCursor(cursorTexture, cursorHotspot, CursorMode.Auto);
         }

@@ -1,0 +1,2 @@
+C:\Repositorios\HeartsOfInk\HeartsOfInk\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\CMakeLists.txt
+C:\Repositorios\HeartsOfInk\HeartsOfInk\Library\Bee\Android\Prj\IL2CPP\Gradle\unityLibrary\src\main\cpp\FramePacing\CMakeLists.txt

@@ -77,3 +77,4 @@ crashlytics-build.properties
 /Hearts of Ink/*
 /HeartsOfInk/Logs
 /HeartsOfInk/UserSettings
+/HeartsOfInk/.utmp/Debug
