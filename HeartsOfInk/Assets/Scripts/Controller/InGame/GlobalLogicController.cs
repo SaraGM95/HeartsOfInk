@@ -115,6 +115,7 @@ public class GlobalLogicController : MonoBehaviour
             AwakeIA();
             AwakeMap();
             cities = FindObjectsOfType<CityController>().ToList();
+            statisticsController.CreatePlayerStatsFromGame(gameModel);
 
             if (gameModel.Gametype == GameModel.GameType.Single)
             {

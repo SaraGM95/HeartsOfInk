@@ -61,6 +61,7 @@
     <Analyzer Include="C:\Program Files\Unity\Hub\Editor\6000.1.9f1\Editor\Data\Tools\Unity.SourceGenerators\Unity.UIToolkit.SourceGenerator.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Tests\EditModeTests\EndgameLogic\EM_IsPlayerVictory.cs" />
     <Compile Include="Assets\Scripts\Tests\EditModeTests\EM_lnGameLogic_IsGameFinished.cs" />
   </ItemGroup>
   <ItemGroup>

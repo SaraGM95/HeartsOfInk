@@ -15,7 +15,7 @@ namespace Assets.Scripts.Data
         public int OwnCitiesLost { get; private set; }
         public int EnemyCitiesConquered { get; private set; }
         public int MaxCities { get; private set; }
-        public int CitiesAtEnd { get; private set; }
+        public int CitiesAtEnd { get; set; }
 
         public PlayerStatistics(Player player)
         {
@@ -86,21 +86,6 @@ namespace Assets.Scripts.Data
             }
         }
 
-        /// <summary>
-        /// Setea la cantidad de ciudades que la facción posee al terminar la partida, se usa para determinar si ha sido derrotado o no.
-        /// </summary>
-        /// <param name="cities"></param>
-        public void SetCitiesAtEnd(List<CityController> cities)
-        {
-            CitiesAtEnd = 0;
-
-            foreach (CityController city in cities)
-            {
-                if (city.Owner == Player)
-                {
-                    CitiesAtEnd++;
-                }
-            }
-        }
+        
     }
 }
