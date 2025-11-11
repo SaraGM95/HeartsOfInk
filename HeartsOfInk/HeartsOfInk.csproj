@@ -169,8 +169,8 @@
     <Compile Include="Assets\Scripts\Controller\MapController.cs" />
     <Compile Include="Assets\Scripts\Logic\EndgameLogic.cs" />
     <Compile Include="Assets\Scripts\Controller\Multiplayer\SubMenuPanelController.cs" />
-    <Compile Include="Assets\Scripts\Utils\TimeUtils.cs" />
     <Compile Include="Assets\Scripts\Logic\StatisticsLogic.cs" />
+    <Compile Include="Assets\Scripts\Utils\TimeUtils.cs" />
     <Compile Include="Assets\Scripts\Controller\Generic\UpdateGameController.cs" />
     <Compile Include="Assets\Scripts\Controller\InGame\IObjectSelectable.cs" />
     <Compile Include="Assets\Scripts\Data\Literals\LiteralModel.cs" />

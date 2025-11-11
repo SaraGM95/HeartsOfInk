@@ -26,7 +26,7 @@ public class SecurityLogic
             CreateTime = DateTime.Now,
         };
 
-        FileDAC<UserSession>.SaveFile(session, GetSessionPath());
+        //FileDAC<UserSession>.SaveFile(session, GetSessionPath());
     }
 
     /// <summary>
@@ -35,7 +35,8 @@ public class SecurityLogic
     /// <returns>Valid user session if exists, null instead.</returns>
     public static UserSession LoadUserSession()
     {
-        UserSession saveSession = FileDAC<UserSession>.LoadFile(GetSessionPath());
+        //UserSession saveSession = FileDAC<UserSession>.LoadFile(GetSessionPath());
+        UserSession saveSession = null;
 
         if (saveSession == null)
         {
